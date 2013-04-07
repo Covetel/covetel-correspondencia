@@ -1,0 +1,49 @@
+[% js_ext = [
+    '/static/js/jquery-ui-1.8.1.custom.min.js',
+	'/static/js/jquery-popup/jquery.popup.js',
+	'/static/js/ui.datepicker-eso.js',
+	'/static/js/submenu.js'
+	]
+css_ext = [
+	'/static/js/jquery/css/smoothness/jquery-ui-1.8.1.custom.css',
+	]
+%]
+
+[% js_local = BLOCK %]
+
+$("document").ready(function(){
+	$("#otro").hide();
+	$("#fecha_recepcion").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_respuesta").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+
+	$("#destinatario").change(function(){
+		var valor = $("#destinatario").val();
+	
+		if ( valor == "Otro" ) {
+			$("#otro").show();
+		}else{
+			$("#otro").hide();
+		}
+	});
+
+	 $(".verEtiqueta").popup({
+       	                    width: 400,
+                            height: 280,
+                            titlebar: false,
+                            status: false,
+                            resizable: false,
+                            toolbar: false,
+                            scrollbars: false,
+                            menubar: false
+                           });
+
+
+	});
+
+[% END %]
+<br>
+[% INCLUDE acciones.tt2 %]
+[% INCLUDE principal/acciones.tt2 %]
+[% bienvenido %]
+<br>
+[% form %]

@@ -1,0 +1,14 @@
+[% js_ext = [
+			'/static/js/jquery-ui-1.8.1.custom.min.js',
+		]
+%]
+
+[% js_local = BLOCK %]
+
+$(document).ready(function(){
+	$("#usuario").focus();
+});
+
+[% END %]
+<br>
+[% form %]

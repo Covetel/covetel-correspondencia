@@ -1,0 +1,29 @@
+---
+languages: [es]
+method: post
+id: frm_ingresar
+indicator: submit
+elements:
+  - type: Fieldset
+    name: inicio_sesion
+    legend: Inicio de Sesión
+    attributes:
+      class: principal
+    elements:
+      - type: Text
+        label: Usuario
+        name: usuario
+        id: usuario
+        constraints:
+          - type: Required
+            message: "Debe ingresar el nombre de usuario"
+      - type: Password
+        name: clave
+        label: Clave
+        id: clave
+        constraints:
+          - type: Required
+            message: "Debe indicar una clave"
+      - type: Submit
+        name: submit
+        value: Iniciar Sesión

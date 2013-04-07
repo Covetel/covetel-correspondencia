@@ -1,0 +1,152 @@
+---
+languages: [es]
+method: post
+id: frm_ingresar
+enctype: multipart/form-data
+indicator: submit
+elements:
+  - type: Fieldset
+    name: correspondencia
+    name: correspondencia
+    legend: Datos de la Correspondencia
+    attributes:
+      class: principal
+    elements:
+    - type: Text
+      label: Asunto
+      name: asunto
+      id: asunto
+      size: 60
+      constraints:
+        - type: Required
+          message: "Asunto de la Correspondencia"
+    - type: Text
+      label: Remitente
+      name: remitente
+      id: remitente
+      constraints:
+        - type: Required
+          message: "Remitente de la correspondencia"
+
+    - type: Text
+      label: Cargo Remitente
+      name: cargo_remitente
+      id: cargo_remitente
+      constraints:
+        - type: Required
+          message: "Cargo delCargo del  Remitente de la correspondencia"
+
+    - type: Text
+      label: Organismo
+      name: organismo
+      id: organismo
+      constraints:
+        - type: Required
+          message: "Organismo de donde se origina la correspondencia"
+    - type: Text
+      label: Fecha de Recepción
+      name: fecha_recepcion
+      id: fecha_recepcion
+      size: 10
+      attributes:
+        class: fechajquery
+      constraints:
+        - type: Required
+          message: "Fecha de la Recepción de la corresponcencia"
+    - type: Select
+      label: Tipo de Correspondencia
+      name: tipo
+      id: tipo
+      options:
+        - [ 'Finanzas','Finanzas' ]
+        - [ 'Jubilación','Jubilación' ]
+        - [ 'Solicitudes Varias','Solicitudes Varias' ]
+        - [ 'Curriculum','Curriculum' ]
+        - [ 'Alumbrado','Alumbrado' ]
+        - [ 'Talento Humano','Talento Humano' ]
+        - [ 'Asuntos Legales','Asuntos Legales' ]
+        - [ 'Circular','Circular' ]
+        - [ 'Inform Varios Presidente','Informe Varios Presidente' ]
+        - [ 'Memorando','Memorando' ]
+      constraints:
+        - type: Required
+          message: "Tipo de Correspondencia"
+
+    - type: Select
+      label: Destinatario
+      name: destinatario
+      id: destinatario
+      options:
+        - [ 'Presidente CORPELEC','Presindente CORPOELEC' ]
+        - [ 'Directora del Despacho CORPOELEC','Directora del Despacho CORPOELEC' ]
+        - [ 'Otro','Otro' ]
+      constraints:
+        - type: Required
+          message: "Destino de la Correspondencia"
+
+    - type: Text
+      label: Otro Destinatario
+      name: otro
+      id: otro
+      size: 20
+
+    - type: Text
+      label: Remitido A
+      name: remitido
+      id: remitido
+      size: 20
+
+    - type: Radiogroup
+      name: prioridad
+      id: prioridad
+      label: Prioridad
+      options: 
+         - ['1', 'Simple']
+         - ['2', 'Urgente']
+         - ['3', 'Confidencial']
+         - ['4', 'Urgente y Confidencial']
+      constraints:
+        - type: Required
+          message: "Prioridad de la correspondencia"
+    - type: Radiogroup
+      name: anexos
+      id: anexos
+      label: Anexos
+      options: 
+         - ['No', 'No']
+         - ['Completos', 'Completos']
+         - ['Incompletos', 'Imcompletos']
+      constraints:
+        - type: Required
+          message: "Selecciones una opción de acuerco si la corresondencia tiene anexos"
+    - type: File
+      name: adjunto
+      id: adjunto
+      label: Adjunto
+      constraints:
+        - type: Required
+          message: "Debe adjunto un archivo PDF"
+
+    - type: Text
+      label: Respuesta a Memo/Oficio Número
+      name: respuesta
+      id: respuesta
+      size: 10
+
+    - type: Text
+      label: Fecha de la Respuesta
+      name: fecha_respuesta
+      id: fecha_respuesta
+      size: 15
+      attributes:
+        class: fechajquery
+
+    - type: Textarea
+      name: obs
+      label: Observaciones
+      cols: 30
+      rows: 5
+    - type: Submit
+      name: submit
+      id: submit
+      value: Guardar
