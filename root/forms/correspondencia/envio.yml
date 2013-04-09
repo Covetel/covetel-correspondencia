@@ -1,0 +1,83 @@
+---
+languages: [es]
+method: post
+id: frm_envio
+enctype: multipart/form-data
+indicator: submit
+elements:
+  - type: Fieldset
+    name: correspondencia
+    name: correspondencia
+    legend: Datos de la Correspondencia Enviada
+    attributes:
+      class: principal
+    elements:
+    - type: Text
+      label: Asunto
+      name: asunto
+      id: asunto
+      size: 60
+      constraints:
+        - type: Required
+          message: "Asunto de la Correspondencia"
+    - type: Text
+      label: Remitente
+      name: remitente
+      id: remitente
+      constraints:
+        - type: Required
+          message: "Remitente de la correspondencia"
+
+    - type: Text
+      label: Cargo Remitente
+      name: cargo_remitente
+      id: cargo_remitente
+      constraints:
+        - type: Required
+          message: "Cargo delCargo del  Remitente de la correspondencia"
+
+    - type: Text
+      label: Número de Documento
+      name: numero_doc
+      id: numero_doc
+      constraints:
+        - type: Required
+          message: "Número o correlativo de la correspondencia"
+
+    - type: Text
+      label: Dirigido a
+      name: dirige
+      id: dirige
+      size: 20
+
+    - type: Text
+      label: Cargo
+      name: cargo_dirige
+      id: dirige
+      size: 20
+
+    - type: File
+      name: adjunto
+      id: adjunto
+      label: Adjunto
+      constraints:
+        - type: Required
+          message: "Debe adjunto un archivo PDF"
+
+    - type: Text
+      label: Fecha de Envio
+      name: fecha_envio
+      id: fecha_envio
+      size: 15
+      attributes:
+        class: fechajquery
+
+    - type: Textarea
+      name: Resumen
+      label: Resumen
+      cols: 30
+      rows: 5
+    - type: Submit
+      name: submit
+      id: submit
+      value: Guardar

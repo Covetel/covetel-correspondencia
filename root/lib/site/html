@@ -1,0 +1,79 @@
+[%#
+
+Parametros (en orden de aparición):
+  js_local     : un bloque de javascript que se incluye inline en head
+  js_ext       : un arreglo de archivos de js a enlazar
+  css_ext      : un arreglo de archivos de CSS a enlazar
+  ccs_local    : un bloque de CSS que se incluye en línea
+  title        : titulo personalizado de la vista
+
+-%]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+ <head>
+  <title>[% template.title or site.title %]</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+    <link rel="shortcut icon" href="[% Catalyst.uri_for('/static/images/favicon-unasur.ico') %]">
+    <link rel="icon" href="[% Catalyst.uri_for('/static/images/favicon-unasur.png') %]" type="image/png">
+
+<!--    <link rel="stylesheet" type="text/css" media="screen" href="[% Catalyst.uri_for('/src/ttsite.css') %]"> -->
+
+    <link rel="stylesheet"  href="[% Catalyst.uri_for('/static/css/bootstrap.css') %]">
+    <link rel="stylesheet"  href="[% Catalyst.uri_for('/static/css/bootstrap-responsive.css') %]">
+
+    <link rel="stylesheet" type="text/css" media="print" href="[% Catalyst.uri_for('/src/print.css') %]">
+
+    <script src="[% Catalyst.uri_for('/static/js/jquery.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-transition.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-alert.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-modal.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-dropdown.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-scrollspy.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-tab.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-tooltip.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-popover.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-button.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-collapse.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-carousel.js') %]"></script>
+    <script src="[% Catalyst.uri_for('/static/js/bootstrap-typeahead.js') %]"></script>
+
+
+
+    <script type="text/javascript">
+
+    $("document").ready(function(){
+      $('.error,.error_message').hide();
+      $('.error,.error_message').fadeIn(1000);
+      $('.error,.error_message').children('input,select').addClass( 'campo-error' );
+    });
+       </script>
+          [% FOR sc = js_ext %]
+             <script type="text/javascript" src="[% Catalyst.uri_for(sc) %]"></script>
+          [% END %]
+
+          [% IF js_local %]
+             <script type="text/javascript">[% js_local %]</script>
+          [% END %]
+
+          [% IF css_ext %]
+             [% FOR sc = css_ext %]
+                <link rel="stylesheet" type="text/css" media="screen" href="[% Catalyst.uri_for(sc) %]">
+             [% END %]
+          [% END %]
+ </head>
+ <body>
+      [% SET usuario = Catalyst.flash.usuario %]
+      [% IF usuario%]
+	      [% PROCESS site/bar %]
+       [% END %]
+      <div class="span9">
+	      <div class="hero-unit">
+		[% content %]
+      	      </div>
+	</div>
+	</div>
+      <!-- Example row of columns -->
+<div id="footer">[% PROCESS site/footer %]</div>
+    </div> <!-- /container -->	
+ </body>
+</html>

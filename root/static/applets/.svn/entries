@@ -1,0 +1,31 @@
+9
+
+dir
+765
+svn+ssh://jegomezb@10.1.5.233/srv/subversion/correspondencia/trunk/root/static/applets
+svn+ssh://jegomezb@10.1.5.233/srv/subversion/correspondencia
+
+
+
+2010-09-24T18:01:14.466590Z
+624
+szarate
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d35b0fa7-0bcd-41c3-8fd4-dc1376a4fa9f
+
+zebra
+dir
+
