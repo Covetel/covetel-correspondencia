@@ -45,15 +45,15 @@ elements:
           message: "Número o correlativo de la correspondencia"
 
     - type: Text
-      label: Dirigido a
-      name: dirige
-      id: dirige
+      label: Destinatario
+      name: destinatario
+      id: destinatario
       size: 20
 
     - type: Text
-      label: Cargo
-      name: cargo_dirige
-      id: dirige
+      label: Cargo del Destinatario
+      name: cargo_destinatario
+      id: cargo_destinatario
       size: 20
 
     - type: File
@@ -73,7 +73,8 @@ elements:
         class: fechajquery
 
     - type: Textarea
-      name: Resumen
+      name: resumen
+      id: resumen
       label: Resumen
       cols: 30
       rows: 5

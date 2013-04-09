@@ -91,14 +91,16 @@ sub envio_FORM_VALID : Local {
 
 	my $form = $c->stash->{form};
 	
+	$DB::single=1;
 	my %datos = (
 			asunto		=>  $form->param_value('asunto'),
 			remitente	=>  $form->param_value('remitente'),
 			cargo_remitente	=>  $form->param_value('cargo_remitente'),
 			numero_doc 	=>  $form->param_value('numero_doc'),
-			dirige		=>  $form->param_value('dirige'),
-			cargo_dirige 	=>  $form->param_value('cargo_dirige'),
+			destinatario	=>  $form->param_value('destinatario'),
+			cargo_destinatario 	=>  $form->param_value('cargo_destinatario'),
 			fecha_envio	=>  $form->param_value('fecha_envio'),
+			resumen		=>  $form->param_value('Resumen'),
 			prioridad	=>  "1",,
 			adjunto		=>  $form->param('adjunto'),
 			user		=>  $c->session->{user},

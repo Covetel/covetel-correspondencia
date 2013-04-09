@@ -96,23 +96,20 @@ sub save_envio {
 							priority =>  $datos{prioridad},
 							subject  =>  uc($datos{asunto}),
 							cf => {
-									remitente 		=>  uc($datos{remitente}),
-									organismo		=>  uc($datos{organismo}),
-									fecha_recepcion =>  usuario_fecha($datos{fecha_recepcion}),
-									anexo 		  	=>  uc($datos{anexos}),
-									tipo			=>  uc($datos{tipo}),
-									respuesta 		=>  uc($datos{respuesta}),
-									fecha_respuesta	=>  usuario_fecha($datos{fecha_respuesta}),
-									destinatario    =>  uc($datos{destinatario}),
-									cargado			=>  $datos{user},
-									observaciones 	=>  uc($datos{obs}),
-									cargo_remitente =>  uc($datos{cargo_remitente}),
-									remitido		=>  uc($datos{remitido})
+									remitente	=>  uc($datos{remitente}),
+									cargo_remitente =>  $datos{cargo_remitente},
+									numero_doc	=>  uc($datos{numero_doc}),
+									destinatario	=>  uc($datos{destinatario}),
+									cargo_destinatario=>  uc($datos{cargo_destinatario}),
+									fecha_envio	=>  usuario_fecha($datos{fecha_envio}),
+									cargado		=>  $datos{user},
+									resumen 	=>  uc($datos{resumen}),
 								  },
 					  )->store();
 
+		$ticket->add_requestors('joelgomezb@gmail.com');
 		upload_attachment( $ticket, $datos{adjunto} );
-		return "Correspondencia Guardada Exitosamente | <a href='/correspondencia/etiqueta/".$ticket->id."' class='verEtiqueta'>Imprimir Etiqueta</a>";
+		return "Correspondencia Guardada Exitosamente";
 	} catch {
 		return $_;
 	};
