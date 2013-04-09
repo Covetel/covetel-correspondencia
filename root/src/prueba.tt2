@@ -1,5 +1,0 @@
-[% error %]
-
-
-Bienvenido: [% var %]
-[% form %]

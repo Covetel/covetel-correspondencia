@@ -1,4 +1,0 @@
-<div id="cintillo">
-<!-- <div id="cint_der"><img src="[% Catalyst.uri_for('/static/images/ministerio.jpg') %]" alt="" border="0"></div> 
-<div id="cint_izq"><img src="[% Catalyst.uri_for('/static/images/200.jpg') %]" alt="bicentenario" border="0"></div> -->
-</div>

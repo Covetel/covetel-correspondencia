@@ -1,5 +1,0 @@
-<br>
-[% INCLUDE acciones_puntocuenta.tt2 %]
-[% bienvenido %]
-<br>
-[% form %]
