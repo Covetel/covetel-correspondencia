@@ -1,0 +1,7 @@
+[% js_local = BLOCK %]
+
+$(document).ready(function(){
+	$("#usuario").focus();
+});
+
+[% END %]

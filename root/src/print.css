@@ -1,0 +1,88 @@
+body {
+  font-size:0.9em;
+}
+
+#cintillo {
+  display: block;
+  width: 1000px;
+}
+
+#cint_der {
+  display: inline;
+  float: left;
+}
+
+#cint_izq {
+  display: inline;
+  float: right;
+}
+
+#cint_der img {
+  border: medium none;
+}
+
+#cint_izq img {
+  border: medium none;
+}
+
+#content {
+  clear: both;
+}
+
+hr {
+  page-break-before:always;
+}
+
+tr {
+  page-break-inside: avoid;
+}
+
+table.tablaresultados tr th,td {
+  border-width: 1px;
+  border-style: solid;
+  padding: 2px;
+  border-spacing: 0px;
+  font-size:0.7em;
+}
+
+.tablaformato {
+  border-width: 2px;
+  border-style: solid;
+  font-size: 1em;
+}
+
+.tablaformato tr.titulo {
+  font-weight: bold;
+  background: #aaa !important;
+  text-align: center;
+}
+
+.tablaformato td {
+  border-width: 1px;
+  border-style: solid;
+  vertical-align: top;
+  font-size: 0.95em;
+}
+
+.tablaformatointerna td {
+  border-width: 1px;
+  border-style: solid;
+  vertical-align: top;
+  font-size: 0.95em;
+}
+
+.acciones, #links, #sesion, .acciones-secundarias, .ocultar-impresion, .enlace_accion, .imagen #footer {
+/*.acciones, #links, #sesion, .acciones-secundarias, .ocultar-impresion, .enlace_accion, #footer {*/   
+  display: none;
+}
+
+table.tabla_sin_borde tr th,td {
+  border-width: 0px;
+  border-style: none;
+  font-size: 0.95em;
+}
+
+.noprint {
+  display:none;
+
+}

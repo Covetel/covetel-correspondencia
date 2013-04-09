@@ -1,0 +1,130 @@
+---
+languages: [es]
+method: post
+id: frm_direccionamiento
+action: buscar_correlativo
+elements:
+   - type: Fieldset
+     name: campos
+     legend: N&uacute;mero de correlativo de la correspondencia a direccionar
+     attributes:
+       class: principal
+     elements:
+       - type: Multi
+         name: multi2
+         container_attrs:
+           class: vertical
+         label: Número de correlativo de la correspondencia a direccionar
+         elements:
+          - type: Text
+            name: correlativo
+            id: correlativo
+            size: 10
+            maxlength: 8
+            constraints:
+              - type: Required
+                message: "Debe ingresar un número de correlativo válido"
+          - type: Button
+            name: buscar
+            id: buscar
+            value: Buscar
+   - type: Fieldset
+     name: valores
+     id: valores
+     legend: Búsqueda de la correspondencia en un rango de fecha
+     attributes:
+       class: principal
+
+     elements: 
+       - type: Multi
+         name: multi2
+         container_attrs:
+           class: vertical
+         elements:
+          - type: Text
+            name: fecha_inicial
+            id: fecha_inicial
+            label: Fecha Inicial
+            size: 10
+            attributes:
+              class: fechajquery
+            constraints:
+              - type: Required
+                message: "Debe ingresar una fecha válida"
+
+          - type: Text
+            name: fecha_final
+            id: fecha_final
+            label: Fecha Final
+            size: 10 
+            attributes:
+              class: fechajquery
+            constraints:
+              - type: Required
+                message: "Debe ingresar una fecha válida"
+
+          - type: Button
+            name: buscar2
+            value: Buscar
+            id: buscar2
+
+   - type: Fieldset
+     name: busqueda_frase
+     id: busqueda_frase
+     legend: Búsqueda por cualquier palabra
+     attributes: 
+       class: principal
+    
+     elements: 
+       - type: Multi
+         name: multi2
+         container_attrs:
+           class: vertical
+         label: Frase a buscar
+         elements:
+          - type: Text
+            name: q
+            id: q
+            size: 20
+            constraints:
+              - type: Required
+                message: "Debe ingresar un número de correlativo válido"
+          - type: Button
+            name: buscar3
+            id: buscar3
+            value: Buscar
+
+   - type: Fieldset
+     name: resultado
+     id: resultado
+     legend: Datos de la correspondencia
+     attributes:
+       class: principal
+     elements:
+       - type: Label
+         name: numero
+         id: numero
+
+       - type: Label
+         name: asunto
+         id: asunto
+
+       - type: Label
+         name: fecha_recepcion
+         id: fecha_recepcion
+
+       - type: Label
+         name: remitente
+         id: remitente
+
+       - type: Label
+         name: organismo
+         id: organismo
+
+       - type: Label
+         name: recibida
+         id: recibida
+
+       - type: Label
+         name: adjunto
+         id: adjunto

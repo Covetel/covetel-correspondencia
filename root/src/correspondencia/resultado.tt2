@@ -1,0 +1,30 @@
+[% js_ext = [
+    '/static/js/jquery-ui-1.8.1.custom.min.js',
+	'/static/js/jquery-popup/jquery.popup.js',
+	'/static/js/ui.datepicker-es.js'
+	]
+css_ext = [
+	'/static/js/jquery/css/smoothness/jquery-ui-1.8.1.custom.css',
+	]
+%]
+
+[% js_local = BLOCK %]
+
+$("document").ready(function(){
+
+});
+
+[% END %]
+<br>
+[% INCLUDE acciones.tt2 %]
+[% INCLUDE principal/acciones.tt2 %]
+[% bienvenido %]
+<br>
+
+[% USE Dumper %]
+[% Dumper.dump(resultado) %]
+
+[% FOREACH fila IN resultado %]
+	id: [% fila.remitente %]
+	asunto: [% fila.asunto %]
+[% END %]

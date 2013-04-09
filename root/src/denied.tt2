@@ -1,0 +1,8 @@
+<div align="center">
+<h2>Acceso no permitido</h2>
+[% IF !error %]Ud. no está autorizado para utilizar esta aplicación.[% END %]
+
+[% IF !Catalyst.user %]
+<a href="[% Catalyst.uri_for('/usuarios/login') %]">Iniciar sesión</a>
+[% END %]
+</div>

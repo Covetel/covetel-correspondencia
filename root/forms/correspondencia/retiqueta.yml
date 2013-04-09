@@ -1,0 +1,69 @@
+---
+languages: [es]
+method: post
+id: frm_etiqueta
+action: buscar_correlativo
+elements:
+   - type: Fieldset
+     name: campos
+     legend: N&uacute;mero de correlativo de la correspondencia a direccionar
+     attributes:
+       class: principal
+     elements:
+       - type: Multi
+         name: multi2
+         container_attrs:
+           class: vertical
+         label: Correlativo a reimprimir
+         elements:
+          - type: Text
+            name: correlativo
+            id: correlativo
+            size: 10
+            maxlength: 8
+            constraints:
+              - type: Required
+                message: "Debe ingresar un número de correlativo válido"
+          - type: Submit
+            name: buscar
+            id: buscar
+            value: Buscar
+   - type: Fieldset
+     name: resultado
+     id: resultado
+     legend: Datos de la correspondencia
+     attributes:
+       class: principal
+     elements:
+       - type: Label
+         name: numero
+         id: numero
+
+       - type: Label
+         name: asunto
+         id: asunto
+
+       - type: Label
+         name: fecha_recepcion
+         id: fecha_recepcion
+
+       - type: Label
+         name: remitente
+         id: remitente
+
+       - type: Label
+         name: organismo
+         id: organismo
+
+       - type: Label
+         name: recibida
+         id: recibida
+
+       - type: Label
+         name: adjunto
+         id: adjunto
+
+       - type: Button
+         name: reimprimir
+         id: reimprimir
+         value: Reimprimir

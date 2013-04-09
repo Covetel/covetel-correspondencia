@@ -1,0 +1,22 @@
+<div id="content">
+
+[% IF status_msg %]
+<div class="ui-widget">
+  <div class="ui-state-highlight ui-corner-all">
+  <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+  [% status_msg %]
+  </div>
+</div>
+[% END %]
+[% SET error = error_msg or Catalyst.flash.error_msg %]
+[% IF error %]
+<div class="ui-widget">
+  <div class="ui-state-error ui-corner-all error">
+  <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+  [% error %]
+  </div>
+</div>
+[% END %]
+
+[% content %]
+</div>

@@ -1,0 +1,51 @@
+[% js_ext = [
+    '/static/js/jquery-ui-1.8.1.custom.min.js',
+	'/static/js/jquery-popup/jquery.popup.js',
+	'/static/js/ui.datepicker-es.js',
+	'/static/js/submenu.js'
+	]
+css_ext = [
+	'/static/js/jquery/css/smoothness/jquery-ui-1.8.1.custom.css',
+	]
+%]
+
+[% js_local = BLOCK %]
+
+$("document").ready(function(){
+	$("#dialog").hide();
+	$("#dialog-dia").hide();
+	$("#dialog-reporte-diario").hide();
+	$("#dia").datepicker({ minDate: new Date(1, -1, 1, 2010) });
+	$("#fecha_inicio").datepicker({ minDate: new Date(1, -1, 1, 2010) });
+	$("#fecha_fin").datepicker({ minDate: new Date(1, -1, 1, 2010) });
+
+    $("#reporte_fechas").click(function(){
+		if ($("#fecha_inicio").val() == "" || $("#fecha_fin").val() == "" ){
+				alert("Debe ingrese una fecha válida");
+				$("#fecha_inicio").focus();
+		}else{
+			window.location = "[% Catalyst.uri_for('/correspondencia/reporte_fechas/') %]" + $("#fecha_inicio").val() + "/" + $("#fecha_fin").val();
+
+		}				
+	});
+
+
+   $("#reporte_diario").click(function(){
+		if ($("#dia").val() == ""  ){
+				alert("Debe ingrese una fecha válida");
+				$("#dia").focus();
+		}else{
+			window.location = "[% Catalyst.uri_for('/correspondencia/reporte_diario/') %]" + $("#dia").val();
+		}
+	});
+
+
+});
+
+[% END %]
+<br>
+[% INCLUDE acciones.tt2 %]
+[% INCLUDE principal/acciones.tt2 %]
+[% bienvenido %]
+<br>
+[% form %]

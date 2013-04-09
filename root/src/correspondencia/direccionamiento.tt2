@@ -1,0 +1,59 @@
+[% js_ext = [
+    '/static/js/jquery-ui-1.8.1.custom.min.js',
+	'/static/js/jquery-popup/jquery.popup.js',
+	'/static/js/ui.datepicker-es.js'
+	]
+css_ext = [
+	'/static/js/jquery/css/smoothness/jquery-ui-1.8.1.custom.css',
+	]
+%]
+
+[% js_local = BLOCK %]
+
+$("document").ready(function(){
+	$("#valores").hide();
+	$("#correlativo").focus();
+
+	$("#frm_direccionamiento").submit(function(){
+		$("#valores").fadeOut('slow');
+		$.post("[% Catalyst.uri_for('/correspondencia/buscar_correlativo') %]", { correlativo: $("#correlativo").val() },
+		  function(data){
+			if ( data.json.id ) {
+				$("#valores").fadeIn('slow');
+				$("#numero").text("Numero de Correlativo: " + data.json.id);
+				$("#asunto").text("Asunto: " + data.json.asunto);
+				$("#fecha_recepcion").text("Fecha de Recepción: " + data.json.fecha_recepcion);
+				$("#remitente").text("Remitente: " + data.json.remitente);
+				$("#organismo").text("Organismo: " + data.json.organismo);
+				$("#recibida").text("Recibida por: " + data.json.recibida);
+			}else{
+				alert('Correspondencia no encontrada');
+			}	
+		  });
+		return false;
+	});
+
+	$("#asignar").click(function(){
+		if ( confirm("¿Esta seguro de la realizar la asigancion?") ){
+	      $.post("[% Catalyst.uri_for('/correspondencia/asignar') %]", { correlativo: $("#correlativo").val() },
+		  function(data){
+			if ( data.json ) {
+				alert('Correspondencia asignada exitosamente!!');
+			}else{
+				alert('Correspondencia no encontrada');
+			}	
+		  });
+		return false;
+
+		}
+	});
+});
+
+
+[% END %]
+<br>
+[% INCLUDE acciones.tt2 %]
+[% INCLUDE principal/acciones.tt2 %]
+[% bienvenido %]
+<br>
+[% form %]

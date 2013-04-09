@@ -1,0 +1,15 @@
+<div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Correspondencias</li>
+              <li class="active"><a href="[% Catalyst.uri_for('/correspondencia/recepcion') %]">Recepci&oacute;n</a></li>
+              <li><a href="[% Catalyst.uri_for('/correspondencia/envio') %]">Env&iacute;o</a></li>
+              <li class="nav-header">Opciones</li>
+              <li><a href="[% Catalyst.uri_for('/correspondencia/reportes') %]">Reportes</a></li>
+              <li><a href="[% Catalyst.uri_for('/correspondencia/retiqueta') %]">Reimprimir Etiqueta</a></li>
+              <li><a href="[% Catalyst.uri_for('/correspondencia/buscar') %]">Buscar...</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
