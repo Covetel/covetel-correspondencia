@@ -75,6 +75,50 @@ sub recepcion_FORM_VALID : Local {
 	$c->response->redirect( $c->uri_for("/correspondencia/recepcion") );
 }
 
+sub envio : Local : FormConfig {
+	my ( $self, $c ) = @_;
+	
+	$c->stash->{template} = "correspondencia/envio.tt2";
+	$c->flash->{usuario} = $c->session->{user};
+	my $form = $c->stash->{form};
+    $form->auto_constraint_class( 'constraint_%t' );
+
+}
+
+sub envio_FORM_VALID : Local {
+	my ( $self, $c ) = @_;
+
+
+my $form = $c->stash->{form};
+	my ( $self, $c ) = @_;
+
+	my %datos = (
+			asunto		=>  $form->param_value('asunto'),
+			remitente	=>  $form->param_value('remitente'),
+			cargo_remitente	=>  $form->param_value('cargo_remitente'),
+			numero_doc 	=>  $form->param_value('numero_doc'),
+			destinatario	=>  $form->param_value('destinatario'),
+			cargo_destinatario 	=>  $form->param_value('cargo_destinatario'),
+			fecha_envio	=>  $form->param_value('fecha_envio'),
+			resumen		=>  $form->param_value('resumen'),
+			prioridad	=>  "1",,
+			adjunto		=>  $form->param('adjunto'),
+			user		=>  $c->session->{user},
+			pass		=>  $c->session->{pass},
+			cola		=>  "correspondencia_saliente"
+ 		    );
+
+	my $resp = $c->model("RT")->save_envio( %datos );
+
+	if ( ref($resp) =~ /RT::Client::REST/ ) {
+		$c->flash->{error_msg} = $resp;
+	}else{
+		$c->flash->{status_msg} = $resp;
+	}
+	$c->response->redirect( $c->uri_for("/correspondencia/envio") );
+
+}
+
 sub etiqueta : Local {
 	my ( $self, $c, $arg ) = @_;
 

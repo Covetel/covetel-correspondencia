@@ -27,7 +27,6 @@ elements:
       constraints:
         - type: Required
           message: "Remitente de la correspondencia"
-
     - type: Text
       label: Cargo Remitente
       name: cargo_remitente
@@ -49,6 +48,9 @@ elements:
       name: destinatario
       id: destinatario
       size: 20
+      constraint:
+        - type: Required
+          message: "Correo(s) Electronico(s) de los destinatarios"
 
     - type: Text
       label: Cargo del Destinatario

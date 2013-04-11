@@ -62,19 +62,17 @@ hr {
 #top_izq {
   width: 14px;
   height: 54px;
-  background:  url('/static/images/extremo_izquierdo.jpg') no-repeat scroll right top;
 }
 
 #top_der {
-  width: 290px; /*384*/
-  height: 54px;
-  background:  url('/static/images/correspondencia_corpoelec.png') no-repeat scroll left top;
+  width: 10px; /*384*/
+  height: 1px;
 }
 
 
 #links {
-  background:  url('/static/images/pixel.jpg') repeat-x scroll left top;
-  height: 54px;
+  background:  url('/static/images/unasur-bar.png') no-repeat scroll center top;
+  height: 110px;
   font-weight: normal;
   font-size: 9px;
   /*font-size: 12px;*/

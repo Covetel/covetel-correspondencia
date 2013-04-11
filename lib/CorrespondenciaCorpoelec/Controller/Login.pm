@@ -43,7 +43,7 @@ sub index_FORM_VALID : Local {
 		  $c->session->{user} = $user;
 		  $c->session->{pass} = $pass;
           $c->flash->{usuario} = $user;
-          $c->response->redirect( $c->uri_for('/principal') );
+          $c->response->redirect( $c->uri_for('/correspondencia/recepcion') );
       }else{
           $c->flash->{error_msg} = $rt;
           $c->response->redirect( $c->uri_for('/login') );

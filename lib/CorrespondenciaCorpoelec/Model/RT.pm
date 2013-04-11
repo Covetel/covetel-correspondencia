@@ -80,6 +80,57 @@ sub save_correspondencia {
 	};
 }
 
+
+sub save_envio {
+	my ( $self, %datos ) = @_;
+
+	my $rt = $self->auth( $datos{user}, $datos{pass} );
+	
+	$DB::single=1;
+	try {
+	    my $ticket = RT::Client::REST::Ticket->new(
+							rt 	 =>  $rt,
+							owner 	 =>  $datos{user},
+							queue 	 =>  $datos{cola},
+							owner  =>  $datos{user},
+							status 	 =>  "new",
+							priority =>  $datos{prioridad},
+							subject  =>  uc($datos{asunto}),
+							cf => {
+									remitente	=>  uc($datos{remitente}),
+									cargo_remitente =>  $datos{cargo_remitente},
+									numero_doc	=>  uc($datos{numero_doc}),
+									destinatario	=>  uc($datos{destinatario}),
+									cargo_destinatario=>  uc($datos{cargo_destinatario}),
+									fecha_envio	=>  usuario_fecha($datos{fecha_envio}),
+									cargado		=>  $datos{user},
+									resumen 	=>  uc($datos{resumen}),
+								  },
+					  )->store();
+
+		#$ticket->add_requestors('joelgomezb@gmail.com');
+		upload_attachment( $ticket, $datos{adjunto} );
+		return "Correspondencia Guardada Exitosamente";
+	} catch {
+		return $_;
+	};
+}
+
+
+sub search_ticket {
+	my ( $self, $ticket, %datos ) = @_;
+		
+	my $rt = $self->auth( $datos{user}, $datos{pass} );
+
+	try {
+		my $resultado = RT::Client::REST::Ticket->new( rt => $rt, id => $ticket )->retrieve;
+		return $resultado;
+	}catch {
+		return $_; 
+	}
+
+}
+
 sub search_ticket {
 	my ( $self, $ticket, %datos ) = @_;
 		

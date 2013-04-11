@@ -5,7 +5,8 @@
 [% SET usuario = Catalyst.flash.usuario %]
 [% IF usuario %]
 <div id="sesion">
-Sesión Iniciada como: [% usuario %] | <a href="[% Catalyst.uri_for('/login/logout') %]">Cerrar Sesión</a>
+<br>
+<b>Sesión Iniciada como: [% usuario %] | <a href="[% Catalyst.uri_for('/login/logout') %]">Cerrar Sesión</a></b>
 </div>
 [% END %]
 [% SET status = Catalyst.flash.status_msg or status_msg %]
