@@ -32,16 +32,16 @@ sub index :Path :Args(0) {
     # Hello World
     #  $c->response->body( $c->welcome_message );
 
-    $c->response->redirect( $c->uri_for('/login') );
+	$c->response->redirect( $c->uri_for('/login') );
 }
 
 sub begin : Private {
 	my ( $self, $c ) = @_;
 
-#	if ( $c->session_expires == 0 ) {
-# 		$c->flash->{error_msg} = "Sesi&oacute;n Expirada";
-#		$c->response->redirect( $c->uri_for('/login') );
-#	}
+	if ( $c->session_expires == 0 ) {
+ 		$c->flash->{error_msg} = "Sesi&oacute;n Expirada";
+		$c->response->redirect( $c->uri_for('/login') );
+	}
 
 }
 

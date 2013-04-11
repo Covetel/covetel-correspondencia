@@ -12,35 +12,15 @@ Parametros (en orden de aparición):
 <html>
  <head>
   <title>[% template.title or site.title %]</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-    <link rel="shortcut icon" href="[% Catalyst.uri_for('/static/images/favicon-unasur.ico') %]">
-    <link rel="icon" href="[% Catalyst.uri_for('/static/images/favicon-unasur.png') %]" type="image/png">
-
-<!--    <link rel="stylesheet" type="text/css" media="screen" href="[% Catalyst.uri_for('/src/ttsite.css') %]"> -->
-
-    <link rel="stylesheet"  href="[% Catalyst.uri_for('/static/css/bootstrap.css') %]">
-    <link rel="stylesheet"  href="[% Catalyst.uri_for('/static/css/bootstrap-responsive.css') %]">
-
-    <link rel="stylesheet" type="text/css" media="print" href="[% Catalyst.uri_for('/src/print.css') %]">
-
-    <script src="[% Catalyst.uri_for('/static/js/jquery.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-transition.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-alert.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-modal.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-dropdown.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-scrollspy.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-tab.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-tooltip.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-popover.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-button.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-collapse.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-carousel.js') %]"></script>
-    <script src="[% Catalyst.uri_for('/static/js/bootstrap-typeahead.js') %]"></script>
-
-
-
-    <script type="text/javascript">
-
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+      <link rel="shortcut icon" href="[% Catalyst.uri_for('/static/images/favicon.ico') %]">
+      <link rel="icon" href="[% Catalyst.uri_for('/static/images/favicon.png') %]" type="image/png">
+      <link rel="stylesheet" type="text/css" media="screen" href="[% Catalyst.uri_for('/src/ttsite.css') %]">
+      <link rel="stylesheet" type="text/css" media="screen" href="[% Catalyst.uri_for('/static/css/smoothness/jquery-ui-1.8.1.custom.css') %]">
+      <link rel="stylesheet" type="text/css" media="print" href="[% Catalyst.uri_for('/src/print.css') %]">
+       <script type="text/javascript" src="[% Catalyst.uri_for('/static/js/jquery-1.4.2.min.js') %]"></script>
+       <script type="text/javascript" src="[% Catalyst.uri_for('/static/js/jquery-ui-1.8.1.custom.min.js') %]"></script>
+       <script type="text/javascript">
     $("document").ready(function(){
       $('.error,.error_message').hide();
       $('.error,.error_message').fadeIn(1000);
@@ -62,18 +42,6 @@ Parametros (en orden de aparición):
           [% END %]
  </head>
  <body>
-      [% SET usuario = Catalyst.flash.usuario %]
-      [% IF usuario%]
-	      [% PROCESS site/bar %]
-       [% END %]
-      <div class="span9">
-	      <div class="hero-unit">
-		[% content %]
-      	      </div>
-	</div>
-	</div>
-      <!-- Example row of columns -->
-<div id="footer">[% PROCESS site/footer %]</div>
-    </div> <!-- /container -->	
+[% content %]
  </body>
 </html>

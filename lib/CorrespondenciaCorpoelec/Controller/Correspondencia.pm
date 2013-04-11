@@ -34,7 +34,7 @@ sub recepcion : Local : FormConfig {
 	$c->stash->{template} = "correspondencia/recepcion.tt2";
 	$c->flash->{usuario} = $c->session->{user};
 	my $form = $c->stash->{form};
-#    	$form->auto_constraint_class( 'constraint_%t' );
+    $form->auto_constraint_class( 'constraint_%t' );
 
 }
 
@@ -46,23 +46,23 @@ sub recepcion_FORM_VALID : Local {
 	
 	my $destinatario = ( $form->param_value('otro') and $form->param_value('destinatario') == "Otro" ) ? $form->param_value('otro') : $form->param_value('destinatario');
 	my %datos = (
-					asunto		=>  $form->param_value('asunto'),
-					remitente	=>  $form->param_value('remitente'),
-					organismo 	=>  $form->param_value('organismo'),
+					asunto			=>  $form->param_value('asunto'),
+					remitente		=>  $form->param_value('remitente'),
+					organismo 		=>  $form->param_value('organismo'),
 					fecha_recepcion =>  $form->param_value('fecha_recepcion'),
-					prioridad	=>  $form->param_value('prioridad'),
-					anexos 		=>  $form->param_value('anexos'),
-					obs 		=>  $form->param_value('obs'),
+					prioridad		=>  $form->param_value('prioridad'),
+					anexos 			=>  $form->param_value('anexos'),
+					obs 			=>  $form->param_value('obs'),
 					destinatario    =>  $destinatario,
-					tipo		=>  $form->param_value('tipo'),
-					respuesta	=>  $form->param_value('respuesta'),
+					tipo			=>  $form->param_value('tipo'),
+					respuesta		=>  $form->param_value('respuesta'),
 					fecha_respuesta =>  $form->param_value('fecha_respuesta'),
-					remitido	=>  $form->param_value('remitido'),
+					remitido		=>  $form->param_value('remitido'),
 					cargo_remitente =>  $form->param_value('cargo_remitente'),
-					adjunto		=>  $form->param('adjunto'),
-					user		=>  $c->session->{user},
-					pass		=>  $c->session->{pass},
-					cola		=>  "correspondencia_entrante"
+					adjunto			=>  $form->param('adjunto'),
+					user			=>  $c->session->{user},
+					pass			=>  $c->session->{pass},
+					cola			=>  "correspondencia_entrante"
 				);
 
 	my $resp = $c->model("RT")->save_correspondencia( %datos );
@@ -73,49 +73,6 @@ sub recepcion_FORM_VALID : Local {
 		$c->flash->{status_msg} = $resp;
 	}
 	$c->response->redirect( $c->uri_for("/correspondencia/recepcion") );
-}
-
-sub envio : Local : FormConfig {
-	my ( $self, $c ) = @_;
-	
-	$c->stash->{template} = "correspondencia/envio.tt2";
-	$c->flash->{usuario} = $c->session->{user};
-	my $form = $c->stash->{form};
-#    	$form->auto_constraint_class( 'constraint_%t' );
-
-}
-
-sub envio_FORM_VALID : Local {
-	my ( $self, $c ) = @_;
-
-
-	my $form = $c->stash->{form};
-	
-	$DB::single=1;
-	my %datos = (
-			asunto		=>  $form->param_value('asunto'),
-			remitente	=>  $form->param_value('remitente'),
-			cargo_remitente	=>  $form->param_value('cargo_remitente'),
-			numero_doc 	=>  $form->param_value('numero_doc'),
-			destinatario	=>  $form->param_value('destinatario'),
-			cargo_destinatario 	=>  $form->param_value('cargo_destinatario'),
-			fecha_envio	=>  $form->param_value('fecha_envio'),
-			resumen		=>  $form->param_value('Resumen'),
-			prioridad	=>  "1",,
-			adjunto		=>  $form->param('adjunto'),
-			user		=>  $c->session->{user},
-			pass		=>  $c->session->{pass},
-			cola		=>  "correspondencia_saliente"
- 		    );
-
-	my $resp = $c->model("RT")->save_envio( %datos );
-
-	if ( ref($resp) =~ /RT::Client::REST/ ) {
-		$c->flash->{error_msg} = $resp;
-	}else{
-		$c->flash->{status_msg} = $resp;
-	}
-	$c->response->redirect( $c->uri_for("/correspondencia/envio") );
 }
 
 sub etiqueta : Local {
@@ -237,7 +194,7 @@ sub retiqueta : Local : FormConfig {
 
 	my $form = $c->stash->{form};
 	$c->flash->{usuario} = $c->session->{user};
-#    $form->auto_constraint_class( 'constraint_%t' );
+    $form->auto_constraint_class( 'constraint_%t' );
 
 }	
 

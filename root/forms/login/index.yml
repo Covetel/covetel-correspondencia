@@ -2,32 +2,28 @@
 languages: [es]
 method: post
 id: frm_ingresar
-attributes:
-  class: navbar-form pull-right
 indicator: submit
 elements:
-    - type: Text
-      name: usuario
-      id: usuario
-      attributes:
-        placeholder: Usuario
-      container_attributes:
-        class: span2
-      constraints:
-        - type: Required
-          message: "Debe ingresar el nombre de usuario"
-    - type: Password
-      name: clave
-      id: clave
-      attributes:
-        placeholder: Contraseña
-      container_attributes:
-        class: span2
-      constraints:
-        - type: Required
-          message: "Debe indicar una clave"
-    - type: Submit
-      name: submit
-      container_attributes:
-        class: btn
-      value: Iniciar Sesión
+  - type: Fieldset
+    name: inicio_sesion
+    legend: Inicio de Sesión
+    attributes:
+      class: principal
+    elements:
+      - type: Text
+        label: Usuario
+        name: usuario
+        id: usuario
+        constraints:
+          - type: Required
+            message: "Debe ingresar el nombre de usuario"
+      - type: Password
+        name: clave
+        label: Clave
+        id: clave
+        constraints:
+          - type: Required
+            message: "Debe indicar una clave"
+      - type: Submit
+        name: submit
+        value: Iniciar Sesión

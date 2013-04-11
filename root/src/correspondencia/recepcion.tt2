@@ -42,4 +42,8 @@ $("document").ready(function(){
 
 [% END %]
 <br>
+[% INCLUDE acciones.tt2 %]
+[% INCLUDE principal/acciones.tt2 %]
+[% bienvenido %]
+<br>
 [% form %]

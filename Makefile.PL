@@ -18,15 +18,8 @@ requires 'namespace::autoclean';
 requires 'Config::General'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 requires 'Catalyst::Plugin::Unicode::Encoding';
-requires 'RT::Client::REST';
-requires 'HTML::HTMLDoc';
-requires 'HTML::FormFu';
-requires 'Try::Tiny';
-requires 'Encode';
-requires 'File::Copy';
-requires 'Switch';
-
-
+requires 'RT::Client::REST'
+requires 'HTML::HTMLDoc'
 
 test_requires 'Test::More' => '0.88';
 catalyst;
