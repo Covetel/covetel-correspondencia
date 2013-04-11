@@ -112,6 +112,12 @@ img {
   max-width: none;
 }
 
+.principal {
+  margin: 50px;
+  font-size: 100%;
+  vertical-align: middle;
+}
+
 button,
 input,
 select,

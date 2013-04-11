@@ -24,6 +24,8 @@ elements:
       label: Remitente
       name: remitente
       id: remitente
+      attributes:
+        class: principal
       constraints:
         - type: Required
           message: "Remitente de la correspondencia"
