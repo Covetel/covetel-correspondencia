@@ -1,6 +1,6 @@
 <table width="100%">
   <tr>
-    <td><img src="[% Catalyst.path_to('/root/static/images/logo-unasur.jpg') %]" width="100px" height="80px"/></td>   
+    <td><img src="[% Catalyst.path_to('/root/static/images/unasur-bar.png') %]" width="680px" height="90px"/></td>   
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr><td>&nbsp;</td></tr>  

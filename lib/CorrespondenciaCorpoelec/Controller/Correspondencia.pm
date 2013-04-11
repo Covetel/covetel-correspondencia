@@ -335,7 +335,7 @@ sub reporte_fechas : Local {
 			$c->stash->{ fecha_inicio } = fecha_usuario( $fecha_inicio );
 			$c->stash->{ fecha_fin } = fecha_usuario( $fecha_fin );
 			$c->stash->{ pdf_filename } =  "reporte-$dia-$mes-$anio-al-$dia1-$mes1-$anio1.pdf";
-    		$c->stash->{ no_title } = 1;
+	    		$c->stash->{ no_title } = 1;
 			$c->stash->{ landscape } = 1;
 			$c->stash->{ template } = 'correspondencia/reporte_fechas.tt2';
 	    	$c->stash->{'current_view'} = 'PDF';
