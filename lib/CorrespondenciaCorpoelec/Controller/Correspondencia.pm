@@ -182,6 +182,7 @@ sub buscar_correlativo : Local {
 								tipo	  => $ticket->cf('tipo'),
 								anexo	  => $ticket->cf('anexo'),
 								fecha_recepcion => fecha_usuario($ticket->cf('fecha_recepcion')),
+								cola	 => $ticket->queue,
 								adjunto         => $filename,
 								href            => $str_href
 								);	
@@ -207,10 +208,12 @@ sub buscar_asunto : Local {
 	my %datos = (
 				 user => $c->session->{user},
 				 pass => $c->session->{pass},
-				 query => "Queue = 'correspondencia_entrante' and Subject like '%$arg%'"
+				 query => "(Queue = 'correspondencia_entrante' or Queue = 'correspondencia_saliente') and Subject like '%$arg%'"
 			    );
 
 	my $ticket = $c->model("RT")->query( %datos );
+	use Data::Dumper;
+	print(Dumper($ticket));
 	$c->stash->{json} = $ticket;
 	$c->stash->{current_view} = "JSON";
 
@@ -225,7 +228,7 @@ sub buscar_fechas : Local {
 	my %datos = (
 				 user => $c->session->{user},
 				 pass => $c->session->{pass},
-				 query => "(Queue = 'correspondencia_entrante') and (CF.fecha_recepcion >= '$fecha_inicial' and CF.fecha_recepcion <= '$fecha_final')"
+				 query => "(Queue = 'correspondencia_entrante' or Queue = 'correspondencia_saliente') and (CF.fecha_recepcion >= '$fecha_inicial' and CF.fecha_recepcion <= '$fecha_final')"
 			    );
 
 	my $ticket = $c->model("RT")->query( %datos );
@@ -289,7 +292,7 @@ sub reporte_diario : Local {
 	my %datos = (
 					user => $c->session->{user},
 					pass => $c->session->{pass},
-					query => "Queue = 'correspondencia_entrante' and cf.fecha_recepcion = '$fecha'"
+					query => "(Queue = 'correspondencia_entrante' or Queue = 'correspondencia_saliente')  and cf.fecha_recepcion = '$fecha'"
 				);
 
 	my $resultado = $c->model("RT")->query(%datos);
@@ -321,7 +324,7 @@ sub reporte_fechas : Local {
 	my %datos = (
 				user => $c->session->{user},
 				pass => $c->session->{pass},
-				query => "(Queue = 'correspondencia_entrante') and (cf.fecha_recepcion >= '$fecha_inicio' and cf.fecha_recepcion <= '$fecha_fin')"
+				query => "(Queue = 'correspondencia_entrante' or Queue = 'correspondencia_saliente') and (cf.fecha_recepcion >= '$fecha_inicio' and cf.fecha_recepcion <= '$fecha_fin')"
 				);
 
 	my $resultado = $c->model("RT")->query(%datos);

@@ -108,7 +108,6 @@ sub save_envio {
 								  },
 					  )->store();
 
-		#$ticket->add_requestors('joelgomezb@gmail.com');
 		upload_attachment( $ticket, $datos{adjunto} );
 		return "Correspondencia Guardada Exitosamente";
 	} catch {
@@ -154,7 +153,7 @@ sub asignar {
 	my $ticket =  RT::Client::REST::Ticket->new(
                                                  rt => $rt,
                                                  subject => "",
-                                                 queue => 'correspondencia_entrante_corpoelec',
+                                                 queue => 'correspondencia_entrante',
                                                  owner => $datos{user},
                                                  cf => {
 	                                                      instruccion       =>  "joel",
@@ -206,6 +205,7 @@ sub query {
 							cargado 	=> uc($obj->cf('cargado')),
 							observaciones => $obj->cf('observaciones'),
 							anexo => $obj->cf('anexo'),
+							cola  => $obj->queue,
 							}
 		}
 	

@@ -9,7 +9,7 @@
 
 <table width="100%" border="1">
 	<thead>
-		<td colspan="12" align="center"><b>REPORTE DE CORRESPONDENCIAS RECIBIDAS DESDE: [% fecha_inicio%] HASTA [% fecha_fin %]</b></td>
+		<td colspan="13" align="center"><b>REPORTE DE CORRESPONDENCIAS RECIBIDAS DESDE: [% fecha_inicio%] HASTA [% fecha_fin %]</b></td>
 	</thead> 
 	<thead>
 	  <td><strong>Correlativo</strong></td>
@@ -23,6 +23,7 @@
 	  <td><strong>Anexo</strong></td>
 	  <td><strong>Tipo</strong></td>
 	  <td><strong>Cargado</strong></td>
+	  <td><strong>Clasificaci&oacute;n</strong></td>
 	  <td><strong>Observaciones</strong></td>
 	</thead>
 	[% SET contador = 0 %]
@@ -40,10 +41,11 @@
 		  <td>[% item.anexo || "&nbsp;" %]</td>
 		  <td>[% item.tipo || "&nbsp;" %]</td>
 		  <td>[% item.cargado || "&nbsp;" %]</td>
+		  <td>[% item.cola || "&nbsp;" %]</td>
 		  <td>[% item.observaciones || "&nbsp;" %]</td>
 		</tr>
 	[% END %]
 	<tr>
-		<td colspan="12" align="right"><strong>Total: [% contador %]</strong></td>
+		<td colspan="13" align="right"><strong>Total: [% contador %]</strong></td>
 	</tr>
 </table>

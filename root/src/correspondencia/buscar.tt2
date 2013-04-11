@@ -43,6 +43,7 @@ $("document").ready(function(){
                                 $("#remitente").text("Remitente: " + data.json.remitente);
                                 $("#organismo").text("Organismo: " + data.json.organismo);
                                 $("#recibida").text("Recibida por: " + data.json.recibida);
+                                $("#tipo").text(": Tipo" + data.json.cola);
 								var link = "Archivo adjunto: <a href='" + data.json.href + "'> "+ data.json.adjunto + "</a>";
 								$("#adjunto").append(link);
 								
@@ -75,7 +76,7 @@ $("document").ready(function(){
 					$("#divresultado").show();
 					$.each(data.json, function(i) {
 	
-					$("#tableresultado").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td></tr>");
+					$("#tableresultado").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
 
 						$("tr").css("background-color", function(i){
 					        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";
@@ -120,7 +121,7 @@ $("document").ready(function(){
 				$("#divresultado").show();
 
 				$.each(data.json, function(i) {
-					$("#tableresultado").append("<tr><td><a href='#'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td></tr>");
+					$("#tableresultado").append("<tr><td><a href='#'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
 					$("tr").css("background-color", function(i){
 				        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";
 				    });
@@ -154,6 +155,7 @@ $("document").ready(function(){
 				<td>Asunto</td>
 				<td>Fecha Creación</td>
 				<td>Cargado</td>
+				<td>Tipo</td>
 			</tr>
 		</thead>
 	</table>
