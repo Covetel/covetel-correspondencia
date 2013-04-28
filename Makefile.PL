@@ -19,7 +19,7 @@ requires 'Config::General'; # This should reflect the config file format you've 
                  # See Catalyst::Plugin::ConfigLoader for supported formats
 requires 'Catalyst::Plugin::Unicode::Encoding';
 requires 'RT::Client::REST';
-requires 'HTML::HTMLDoc'
+requires 'HTML::HTMLDoc';
 
 test_requires 'Test::More' => '0.88';
 catalyst;
