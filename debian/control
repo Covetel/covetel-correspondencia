@@ -1,0 +1,14 @@
+Source: covetel-correspondencia
+Section: perl
+Priority: extra
+Maintainer: Walter Vargas <walter@covetel.com.ve>
+Uploaders: Joel Gomez <joelgomezb@gmail.com>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Homepage: http://www.covetel.com.ve
+
+Package: covetel-correspondencia
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Sistema de Gestión de Correspondencia
+ Covetel::Correspondencia es un sistema que permite llevar el control de la correspondencia de su oficina.

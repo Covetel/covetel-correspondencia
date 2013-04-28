@@ -1,0 +1,8 @@
+CATALYST_DEBUG=0
+STARMAN_DEBUG=0
+CORRESPONDENCIACORPOELEC_CONFIG=/opt/correspondencia/correspondenciacorpoelec.conf
+WORKERS=10
+PERL5LIB=/opt/correspondencia/lib:$PERL5LIB
+CORRESPONDENCIA_LOG=/opt/correspondencia/logs
+CORRESPONDENCIA_HOST=localhost
+CORRESPONDENCIA_PORT=5000

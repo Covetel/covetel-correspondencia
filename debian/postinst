@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use 5.010;
+
+my $default_vars_file = '/etc/default/covetel-correspondencia';
+
+open F, '<', $default_vars_file; 
+my @f = <F>; 
+close F; 
+
+my $c; 
+
+for (@f) { chomp; my ($k, $v) = split '=',$_; $c->{$k} = $v }
+
+given($ARGV[0]){
+    when('configure'){
+    	my $dir = $c->{'CORRESPONDENCIA_LOG'};
+    	mkdir $dir unless -d $dir;
+
+    	`chmod 755 /etc/init.d/covetel-correspondencia`;
+    	`update-rc.d covetel-correspondencia defaults`;
+        `/etc/init.d/covetel-correspondencia start`;
+    }
+
+    when(/(abort-upgrade)|(abort-remove)|(abort-deconfigure)/){ }
+    default {
+        exit 0;
+    }
+}

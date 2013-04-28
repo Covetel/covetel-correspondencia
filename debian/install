@@ -1,0 +1,5 @@
+correspondenciacorpoelec.conf /opt/correspondencia/
+script /opt/correspondencia/
+root /opt/correspondencia/
+lib /opt/correspondencia/
+Changes /opt/correspondencia/

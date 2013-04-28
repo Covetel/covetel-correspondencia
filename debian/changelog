@@ -1,0 +1,11 @@
+covetel-correspondencia (0.1.1) unstable; urgency=low
+
+  * Fixing PSGI script 
+
+ -- Walter Vargas <walter@covetel.com.ve>  Sun, 28 Apr 2013 00:25:20 -0430
+
+covetel-correspondencia (0.1) unstable; urgency=low
+
+  * Initial release packing
+
+ -- Walter Vargas <walter@covetel.com.ve>  Sat, 27 Apr 2013 23:32:13 -0430
