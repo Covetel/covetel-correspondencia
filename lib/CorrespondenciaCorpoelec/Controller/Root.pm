@@ -38,10 +38,10 @@ sub index :Path :Args(0) {
 sub begin : Private {
 	my ( $self, $c ) = @_;
 
-	if ( $c->session_expires == 0 ) {
- #		$c->flash->{error_msg} = "Sesi&oacute;n Expirada";
-		$c->response->redirect( $c->uri_for('/login') );
-	}
+#	if ( $c->session_expires == 0 ) {
+#		$c->flash->{error_msg} = "Sesi&oacute;n Expirada";
+#		$c->response->redirect( $c->uri_for('/login') );
+#	}
 
 }
 

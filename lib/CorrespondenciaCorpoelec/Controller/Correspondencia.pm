@@ -90,7 +90,6 @@ sub envio_FORM_VALID : Local {
 
 
 my $form = $c->stash->{form};
-	my ( $self, $c ) = @_;
 
 	my %datos = (
 			asunto		=>  $form->param_value('asunto'),
