@@ -1,3 +1,15 @@
+covetel-correspondencia (0.1.3) unstable; urgency=low
+
+  * Added CATALYST_HOME ENV VAR 
+
+ -- Walter Vargas <walter@covetel.com.ve>  Sun, 28 Apr 2013 01:33:48 -0430
+
+covetel-correspondencia (0.1.2) unstable; urgency=low
+
+  * Fix configuration and small problems
+
+ -- Walter Vargas <walter@covetel.com.ve>  Sun, 28 Apr 2013 01:18:22 -0430
+
 covetel-correspondencia (0.1.1) unstable; urgency=low
 
   * Fixing PSGI script 
