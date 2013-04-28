@@ -58,16 +58,11 @@ elements:
       name: tipo
       id: tipo
       options:
-        - [ 'Finanzas','Finanzas' ]
-        - [ 'Jubilación','Jubilación' ]
-        - [ 'Solicitudes Varias','Solicitudes Varias' ]
-        - [ 'Curriculum','Curriculum' ]
-        - [ 'Alumbrado','Alumbrado' ]
-        - [ 'Talento Humano','Talento Humano' ]
         - [ 'Asuntos Legales','Asuntos Legales' ]
-        - [ 'Circular','Circular' ]
-        - [ 'Inform Varios Presidente','Informe Varios Presidente' ]
+        - [ 'Curriculum','Curriculum' ]
         - [ 'Memorando','Memorando' ]
+        - [ 'Talento Humano','Talento Humano' ]
+        - [ 'Solicitudes Varias','Solicitudes Varias' ]
       constraints:
         - type: Required
           message: "Tipo de Correspondencia"
@@ -77,8 +72,7 @@ elements:
       name: destinatario
       id: destinatario
       options:
-        - [ 'Presidente CORPELEC','Presindente CORPOELEC' ]
-        - [ 'Directora del Despacho CORPOELEC','Directora del Despacho CORPOELEC' ]
+        - [ 'Secretario General','Secretario General' ]
         - [ 'Otro','Otro' ]
       constraints:
         - type: Required
