@@ -130,20 +130,6 @@ sub search_ticket {
 
 }
 
-sub search_ticket {
-	my ( $self, $ticket, %datos ) = @_;
-		
-	my $rt = $self->auth( $datos{user}, $datos{pass} );
-
-	try {
-		my $resultado = RT::Client::REST::Ticket->new( rt => $rt, id => $ticket )->retrieve;
-		return $resultado;
-	}catch {
-		return $_; 
-	}
-
-}
-
 sub asignar {
 	my ( $self, $ticket, %datos ) = @_;
 
