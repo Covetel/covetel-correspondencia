@@ -1,0 +1,33 @@
+---
+languages: [es]
+method: post
+id: frm_ingresar
+enctype: multipart/form-data
+indicator: submit
+elements:
+  - type: Fieldset
+    name: correspondencia
+    name: correspondencia
+    legend: Datos de la Correspondencia
+    attributes:
+      class: principal
+    elements:
+    - type: Text
+      label: Correlativo
+      name: correlativo
+      id: correlativo
+      size: 10
+      constraints:
+        - type: Required
+          message: "Número de Correlativo de la Correspondencia"
+    - type: File
+      label: Archivo Adjunto
+      name: adjunto
+      id: adjunto
+      constraints:
+        - type: Required
+          message: "Archivo a adjuntar"
+    - type: Submit
+      name: submit
+      id: submit
+      value: Guardar

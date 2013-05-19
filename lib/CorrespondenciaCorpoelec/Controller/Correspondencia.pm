@@ -74,6 +74,16 @@ sub recepcion_FORM_VALID : Local {
 	$c->response->redirect( $c->uri_for("/correspondencia/recepcion") );
 }
 
+sub adjuntar : Local : FormConfig {
+	my ( $self, $c ) = @_;
+	
+	$c->stash->{template} = "correspondencia/adjuntar.tt2";
+	$c->flash->{usuario} = $c->session->{user};
+	my $form = $c->stash->{form};
+    $form->auto_constraint_class( 'constraint_%t' );
+
+}
+
 sub envio : Local : FormConfig {
 	my ( $self, $c ) = @_;
 	
