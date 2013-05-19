@@ -59,7 +59,6 @@ sub recepcion_FORM_VALID : Local {
 					fecha_respuesta =>  $form->param_value('fecha_respuesta'),
 					remitido		=>  $form->param_value('remitido'),
 					cargo_remitente =>  $form->param_value('cargo_remitente'),
-					adjunto			=>  $form->param('adjunto'),
 					user			=>  $c->session->{user},
 					pass			=>  $c->session->{pass},
 					cola			=>  "correspondencia_entrante"

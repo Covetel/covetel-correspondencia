@@ -73,7 +73,6 @@ sub save_correspondencia {
 										  },
 					  )->store();
 
-		upload_attachment( $ticket, $datos{adjunto} );
 		return "Correspondencia Guardada Exitosamente | <a href='/correspondencia/etiqueta/".$ticket->id."' class='verEtiqueta'>Imprimir Etiqueta</a>";
 	} catch {
 		return $_;
