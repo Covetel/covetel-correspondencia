@@ -1,7 +1,8 @@
 package CorrespondenciaCorpoelec::Controller::Correspondencia;
 use Moose;
 use namespace::autoclean;
-use Validaciones::Librerias qw( fecha_usuario usuario_fecha );
+use File::Copy;
+use Validaciones::Librerias qw( fecha_usuario usuario_fecha upload_attachment);
 
 BEGIN {extends 'Catalyst::Controller::HTML::FormFu'; }
 
@@ -240,9 +241,51 @@ sub retiqueta : Local : FormConfig {
 
 	my $form = $c->stash->{form};
 	$c->flash->{usuario} = $c->session->{user};
-    $form->auto_constraint_class( 'constraint_%t' );
+        $form->auto_constraint_class( 'constraint_%t' );
 
 }	
+
+sub adjuntar : Local : FormConfig {
+	my ( $self, $c ) = @_;
+
+	my $form = $c->stash->{form};
+	$c->flash->{usuario} = $c->session->{user};
+        $form->auto_constraint_class( 'constraint_%t' );
+}
+
+sub  adjuntar_FORM_VALID : Local {
+	my ( $self, $c ) = @_;
+
+	my $form = $c->stash->{form};
+	
+	my $arg = $form->param_value('correlativo');
+	my $upload = $form->param_value('adjunto');
+
+
+	my %datos =( user => $c->session->{user}, pass => $c->session->{pass} );
+	my $ticket = $c->model("RT")->search_ticket( $arg, %datos );
+
+	if ( ref($ticket) =~ /RT::Client::REST::Ticket/ ) {
+    	
+	        my $dir =  $upload->tempname . ".dir$$";
+       		my $n   =  "$dir/" . $upload->filename;
+	        mkdir $dir;
+
+	        my $fh = $upload->fh;
+        	copy($fh, $n);
+	        $ticket->comment( message => "esto es un mensaje" , attachments=>[$n] );
+    		unlink $n;
+	        rmdir $dir;
+		$c->flash->{status_msg} = "Correspondencia Adjuntada";
+
+	}elsif ( ref($ticket) =~ /RT::Client::REST::Object::InvalidValueException/ ) {
+		$c->flash->{error_msg} = "Session Expirada";
+
+	}else{
+		$c->flash->{error_msg} = "Correspondencia no encontrada";
+
+	}
+}
 
 sub descarga : Local {
     my ($self, $c, $arg) = @_;

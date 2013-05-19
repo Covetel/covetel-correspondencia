@@ -130,6 +130,18 @@ sub search_ticket {
 
 }
 
+sub add_attachment {
+	my ( $ticket, $upload ) = @_;
+
+	try {
+		upload_attachment( $ticket, $upload );
+		return 1;
+	} catch {
+		return $_;
+	};
+
+}
+
 sub asignar {
 	my ( $self, $ticket, %datos ) = @_;
 

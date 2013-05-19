@@ -1,5 +1,6 @@
 <ul class="acciones" id="submenu_correspondencia">
     <li class="first"><a title="Recepci&oacute;n" href="[% Catalyst.uri_for('/correspondencia/recepcion') %]">Recepci&oacute;n</a></li>
+    <li><a title="Adjuntar" href="[% Catalyst.uri_for('/correspondencia/adjuntar') %]">Adjuntar</a></li>
     <li><a title="Env&iacute;o" href="[% Catalyst.uri_for('/correspondencia/envio') %]">Env&iacute;o</a></li>
     <li><a title="Reportes" href="[% Catalyst.uri_for('/correspondencia/reportes') %]">Reportes</a></li>
     <li><a title="Reimprimir Etiqueta" href="[% Catalyst.uri_for('/correspondencia/retiqueta') %]">Reimprimir Etiqueta</a></li>

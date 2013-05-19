@@ -12,7 +12,7 @@
 
    # define a data structure to hold sitewide data
    site = {
-     title     => 'Sistema de Control de Documentos del Despacho de CORPOELEC',
+     title     => 'Sistema de Control de la Correspondencia de la UNASUR',
      copyright => '2013 Uni&oacuten de Naciones Suramericanas (UNASUR)',
    };
 
