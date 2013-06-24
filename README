@@ -1,1 +1,3 @@
 Run script/correspondenciacorpoelec_server.pl to test the application.
+
+To build debian packages use: DEB_BUILD_OPTIONS=nocheck debuild -b -us -uc 
