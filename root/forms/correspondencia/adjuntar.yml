@@ -1,9 +1,9 @@
 ---
 languages: [es]
 method: post
-id: frm_adjuntar
-action: adjuntar
+id: frm_ingresar
 enctype: multipart/form-data
+indicator: submit
 elements:
   - type: Fieldset
     name: correspondencia
@@ -19,16 +19,15 @@ elements:
       size: 10
       constraints:
         - type: Required
-          message: "Correlativo de la Correspondencia"
+          message: "Número de Correlativo de la Correspondencia"
     - type: File
+      label: Archivo Adjunto
       name: adjunto
       id: adjunto
-      label: Adjunto
       constraints:
-      - type: Required
-        message: "Debe adjuntar un archivo"
+        - type: Required
+          message: "Archivo a adjuntar"
     - type: Submit
       name: submit
       id: submit
       value: Guardar
-

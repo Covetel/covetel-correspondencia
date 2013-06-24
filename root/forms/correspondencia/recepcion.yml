@@ -113,14 +113,6 @@ elements:
       constraints:
         - type: Required
           message: "Selecciones una opción de acuerco si la corresondencia tiene anexos"
-    - type: File
-      name: adjunto
-      id: adjunto
-      label: Adjunto
-      constraints:
-        - type: Required
-          message: "Debe adjunto un archivo PDF"
-
     - type: Text
       label: Respuesta a Memo/Oficio Número
       name: respuesta

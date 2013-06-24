@@ -5,7 +5,6 @@ use RT::Client::REST;
 use RT::Client::REST::Ticket;
 use RT::Client::REST::Exception;
 use Validaciones::Librerias qw( upload_attachment usuario_fecha fecha_usuario );
-use Try::Tiny;
 use Encode;
 
 extends 'Catalyst::Model';
@@ -73,7 +72,6 @@ sub save_correspondencia {
 										  },
 					  )->store();
 
-		upload_attachment( $ticket, $datos{adjunto} );
 		return "Correspondencia Guardada Exitosamente | <a href='/correspondencia/etiqueta/".$ticket->id."' class='verEtiqueta'>Imprimir Etiqueta</a>";
 	} catch {
 		return $_;

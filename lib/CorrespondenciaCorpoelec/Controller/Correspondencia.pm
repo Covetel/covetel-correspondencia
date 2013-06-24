@@ -2,7 +2,13 @@ package CorrespondenciaCorpoelec::Controller::Correspondencia;
 use Moose;
 use namespace::autoclean;
 use File::Copy;
+<<<<<<< HEAD
 use Validaciones::Librerias qw( fecha_usuario usuario_fecha upload_attachment);
+=======
+use Try::Tiny;
+use Encode;
+use Validaciones::Librerias qw( fecha_usuario usuario_fecha );
+>>>>>>> master
 
 BEGIN {extends 'Catalyst::Controller::HTML::FormFu'; }
 
@@ -47,20 +53,19 @@ sub recepcion_FORM_VALID : Local {
 	
 	my $destinatario = ( $form->param_value('otro') and $form->param_value('destinatario') == "Otro" ) ? $form->param_value('otro') : $form->param_value('destinatario');
 	my %datos = (
-					asunto			=>  $form->param_value('asunto'),
-					remitente		=>  $form->param_value('remitente'),
-					organismo 		=>  $form->param_value('organismo'),
-					fecha_recepcion =>  $form->param_value('fecha_recepcion'),
+					asunto			=>  encode('UTF-8', $form->param_value('asunto')),
+					remitente		=>  encode('UTF-8',$form->param_value('remitente')),
+					organismo 		=>  encode('UTF-8',$form->param_value('organismo')),
+					fecha_recepcion 	=>  $form->param_value('fecha_recepcion'),
 					prioridad		=>  $form->param_value('prioridad'),
-					anexos 			=>  $form->param_value('anexos'),
-					obs 			=>  $form->param_value('obs'),
-					destinatario    =>  $destinatario,
-					tipo			=>  $form->param_value('tipo'),
-					respuesta		=>  $form->param_value('respuesta'),
+					anexos 			=>  encode('UTF-8',$form->param_value('anexos')),
+					obs 			=>  encode('UTF-8',$form->param_value('obs')),
+					destinatario    =>  encode('UTF-8',$destinatario),
+					tipo			=>  encode('UTF-8',$form->param_value('tipo')),
+					respuesta		=>  encode('UTF-8',$form->param_value('respuesta')),
 					fecha_respuesta =>  $form->param_value('fecha_respuesta'),
-					remitido		=>  $form->param_value('remitido'),
-					cargo_remitente =>  $form->param_value('cargo_remitente'),
-					adjunto			=>  $form->param('adjunto'),
+					remitido		=>  encode('UTF-8',$form->param_value('remitido')),
+					cargo_remitente =>  encode('UTF-8',$form->param_value('cargo_remitente')),
 					user			=>  $c->session->{user},
 					pass			=>  $c->session->{pass},
 					cola			=>  "correspondencia_entrante"
@@ -74,6 +79,45 @@ sub recepcion_FORM_VALID : Local {
 		$c->flash->{status_msg} = $resp;
 	}
 	$c->response->redirect( $c->uri_for("/correspondencia/recepcion") );
+}
+
+sub adjuntar : Local : FormConfig {
+	my ( $self, $c ) = @_;
+	
+	$c->stash->{template} = "correspondencia/adjuntar.tt2";
+	$c->flash->{usuario} = $c->session->{user};
+	my $form = $c->stash->{form};
+    $form->auto_constraint_class( 'constraint_%t' );
+
+}
+
+sub adjuntar_FORM_VALID : Local {
+	my ( $self, $c ) = @_;
+
+
+	my $form = $c->stash->{form};
+	my $correlativo = $form->param_value('correlativo');
+        my $upload =  $form->param_value('adjunto');
+
+	my %datos =  ( user => $c->session->{user}, pass =>  $c->session->{pass} );
+	my $ticket = $c->model("RT")->search_ticket ( $correlativo, %datos );
+
+	try {
+		if ( $ticket =~ /RT::Client::REST::Ticket/ ){
+			my $dir =  $upload->tempname . ".dir$$";
+			my $n   =  "$dir/" . $upload->filename;
+			mkdir $dir;
+
+			my $fh = $upload->fh;
+			copy($fh, $n);
+			$ticket->comment( message => "esto es un mensaje" , attachments=>[$n] );
+			unlink $n;
+			rmdir $dir;
+			$c->flash->{status_msg} = "Archivo adjunto cargado";
+		}
+	}catch{
+		$c->flash->{error_msg} = $_;
+	}
 }
 
 sub envio : Local : FormConfig {
@@ -93,14 +137,14 @@ sub envio_FORM_VALID : Local {
 my $form = $c->stash->{form};
 
 	my %datos = (
-			asunto		=>  $form->param_value('asunto'),
-			remitente	=>  $form->param_value('remitente'),
-			cargo_remitente	=>  $form->param_value('cargo_remitente'),
+			asunto		=> encode('UTF-8', $form->param_value('asunto')),
+			remitente	=> encode('UTF-8', $form->param_value('remitente')),
+			cargo_remitente	=> encode('UTF-8', $form->param_value('cargo_remitente')),
 			numero_doc 	=>  $form->param_value('numero_doc'),
-			destinatario	=>  $form->param_value('destinatario'),
-			cargo_destinatario 	=>  $form->param_value('cargo_destinatario'),
+			destinatario	=> encode('UTF-8', $form->param_value('destinatario')),
+			cargo_destinatario 	=> encode('UTF-8', $form->param_value('cargo_destinatario')),
 			fecha_envio	=>  $form->param_value('fecha_envio'),
-			resumen		=>  $form->param_value('resumen'),
+			resumen		=> encode('UTF-8', $form->param_value('resumen')),
 			prioridad	=>  "1",,
 			adjunto		=>  $form->param('adjunto'),
 			user		=>  $c->session->{user},

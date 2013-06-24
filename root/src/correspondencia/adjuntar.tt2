@@ -1,7 +1,7 @@
 [% js_ext = [
     '/static/js/jquery-ui-1.8.1.custom.min.js',
 	'/static/js/jquery-popup/jquery.popup.js',
-	'/static/js/ui.datepicker-es.js',
+	'/static/js/ui.datepicker-eso.js',
 	'/static/js/submenu.js'
 	]
 css_ext = [
@@ -11,15 +11,35 @@ css_ext = [
 
 [% js_local = BLOCK %]
 
-var datos_ticket = new Array(7);
 $("document").ready(function(){
+	$("#otro").hide();
+	$("#fecha_recepcion").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_respuesta").datepicker({ minDate: new Date(1, -1, 1, 2011) });
 
-	$("#divloading").hide();
-	$("#fecha_inicial").datepicker({ minDate: new Date(1, -1, 1, 2011) });
-	$("#fecha_final").datepicker({ minDate: new Date(1, -1, 1, 2011) });
-	$("#resultado").hide();
+	$("#destinatario").change(function(){
+		var valor = $("#destinatario").val();
+	
+		if ( valor == "Otro" ) {
+			$("#otro").show();
+		}else{
+			$("#otro").hide();
+		}
+	});
 
-});
+	 $(".verEtiqueta").popup({
+       	                    width: 400,
+                            height: 280,
+                            titlebar: false,
+                            status: false,
+                            resizable: false,
+                            toolbar: false,
+                            scrollbars: false,
+                            menubar: false
+                           });
+
+
+	});
+
 [% END %]
 <br>
 [% INCLUDE acciones.tt2 %]
@@ -27,7 +47,3 @@ $("document").ready(function(){
 [% bienvenido %]
 <br>
 [% form %]
-<div id="divloading" class="center">
-	<img id="loading" src="[% Catalyst.uri_for('/static/images/loading.gif') %]">
-	<p>Buscando...</p>		
-</div>
