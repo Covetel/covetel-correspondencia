@@ -1,7 +1,7 @@
 [% js_ext = [
     '/static/js/jquery-ui-1.8.1.custom.min.js',
 	'/static/js/jquery-popup/jquery.popup.js',
-	'/static/js/ui.datepicker-es.js',
+	'/static/js/ui.datepicker-eso.js',
 	'/static/js/submenu.js'
 	]
 css_ext = [
@@ -13,7 +13,8 @@ css_ext = [
 
 $("document").ready(function(){
 	$("#otro").hide();
-	$("#fecha_envio").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_recepcion").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_respuesta").datepicker({ minDate: new Date(1, -1, 1, 2011) });
 
 	$("#destinatario").change(function(){
 		var valor = $("#destinatario").val();

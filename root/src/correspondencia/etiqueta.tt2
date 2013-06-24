@@ -112,7 +112,7 @@ function findPrinter() {
         </i>
         <fieldset  class="ui-widget ui-widget-content ui-corner-all">
             <legend>Etiqueta</legend>
-            <b>Despacho CORPOELEC</b></br>
+            <b>Despacho UNASUR</b></br>
             <b># Correlativo: [% ticket.id %] </b></br>
             <b>Fecha: [% fmt_fecha( ticket.cf('fecha_recepcion') ) %] </b></br>
             <b>Anexos: [% ticket.cf('anexo') %] </b></br>

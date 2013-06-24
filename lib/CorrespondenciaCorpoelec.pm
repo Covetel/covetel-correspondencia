@@ -43,7 +43,7 @@ __PACKAGE__->config(
     name => 'CorrespondenciaCorpoelec',
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-	default_view => 'TT',
+    default_view => 'TT',
     encoding => 'UTF-8',
 );
 
@@ -51,7 +51,7 @@ __PACKAGE__->config(
 	'View::JSON' => {
           allow_callback  => 1,    # defaults to 0
           callback_param  => 'cb', # defaults to 'callback'
-   		  expose_stash    => [ qw(json) ], # defaults to everything
+   	  expose_stash    => [ qw(json) ], # defaults to everything
       },
 
 );
