@@ -2,13 +2,9 @@ package CorrespondenciaCorpoelec::Controller::Correspondencia;
 use Moose;
 use namespace::autoclean;
 use File::Copy;
-<<<<<<< HEAD
-use Validaciones::Librerias qw( fecha_usuario usuario_fecha upload_attachment);
-=======
 use Try::Tiny;
 use Encode;
 use Validaciones::Librerias qw( fecha_usuario usuario_fecha );
->>>>>>> master
 
 BEGIN {extends 'Catalyst::Controller::HTML::FormFu'; }
 
