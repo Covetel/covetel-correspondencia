@@ -4,6 +4,7 @@ use namespace::autoclean;
 use File::Copy;
 use Try::Tiny;
 use Encode;
+use POSIX 'strftime';
 use Validaciones::Librerias qw( fecha_usuario usuario_fecha );
 
 BEGIN {extends 'Catalyst::Controller::HTML::FormFu'; }
@@ -132,6 +133,10 @@ sub envio_FORM_VALID : Local {
 
 my $form = $c->stash->{form};
 
+
+	my $now = strftime '%Y-%m-%d', localtime;
+
+
 	my %datos = (
 			asunto		=> encode('UTF-8', $form->param_value('asunto')),
 			remitente	=> encode('UTF-8', $form->param_value('remitente')),
@@ -140,8 +145,9 @@ my $form = $c->stash->{form};
 			destinatario	=> encode('UTF-8', $form->param_value('destinatario')),
 			cargo_destinatario 	=> encode('UTF-8', $form->param_value('cargo_destinatario')),
 			fecha_envio	=>  $form->param_value('fecha_envio'),
+			fecha_recepcion =>  $now,
 			resumen		=> encode('UTF-8', $form->param_value('resumen')),
-			prioridad	=>  "1",,
+			prioridad	=>  "1",
 			adjunto		=>  $form->param('adjunto'),
 			user		=>  $c->session->{user},
 			pass		=>  $c->session->{pass},
@@ -287,16 +293,10 @@ sub buscar_fechas_saliente : Local {
 	$c->log->info(Dumper($fecha_inicial));
 	$c->log->info(Dumper($fecha_final));
 
-	use Date::Manip;
-
-	my $diferencia = DateCalc($fecha_inicial, $fecha_final, 2);
-	my $dias = Delta_Format($diferencia,"%dt");
-
-	$c->log->info(Dumper($dias));
 	my %datos = (
 				 user => $c->session->{user},
 				 pass => $c->session->{pass},
-				 query => "(Queue = 'correspondencia_saliente') and (Created > $dias )"
+				 query => "(Queue = 'correspondencia_saliente') and (CF.fecha_recepcion >= '$fecha_inicial' and CF.fecha_recepcion <= '$fecha_final')"
 			    );
 
 	$c->log->info(Dumper(%datos));

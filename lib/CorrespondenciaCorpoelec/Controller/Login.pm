@@ -39,7 +39,7 @@ sub index_FORM_VALID : Local {
          
      my $rt = $c->model('RT')->auth($user, $pass); 
          
-     if ( ref($rt) eq 'RT::Client::REST' ){
+     if ( ref($rt) =~ /RT::Client::REST/ ){
 		  $c->session->{user} = $user;
 		  $c->session->{pass} = $pass;
           $c->flash->{usuario} = $user;

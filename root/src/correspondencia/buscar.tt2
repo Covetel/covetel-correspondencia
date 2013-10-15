@@ -99,7 +99,7 @@ $("document").ready(function(){
 	});	
 
 	function mostrar(valor){
-		alert('joelgomezb: '+valor);
+		alert('joelgomezb');
 	}
 
 
@@ -125,7 +125,7 @@ $("document").ready(function(){
 					$("#divresultado_saliente").show();
 					$.each(data.json, function(i) {
 	
-					$("#tableresultado_saliente").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].creado + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
+					$("#tableresultado_saliente").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
 
 						$("tr").css("background-color", function(i){
 					        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";

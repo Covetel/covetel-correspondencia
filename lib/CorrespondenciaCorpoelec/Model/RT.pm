@@ -6,6 +6,7 @@ use RT::Client::REST::Ticket;
 use RT::Client::REST::Exception;
 use Validaciones::Librerias qw( upload_attachment usuario_fecha fecha_usuario );
 use Encode;
+use Try::Tiny;
 
 extends 'Catalyst::Model';
 
@@ -188,7 +189,7 @@ sub query {
 		while (defined(my $obj = &$iterator) ) {
                push @$lista, {
                         id     =>  $obj->id,
-                        asunto =>  encode("utf-8",$obj->subject),
+                        asunto =>  $obj->subject,
 		        remitente => encode("utf-8", $obj->cf('remitente')),
 			organismo => encode("utf-8", $obj->cf('organismo')),
 			destinatario => encode("utf-8", $obj->cf('destinatario')),
