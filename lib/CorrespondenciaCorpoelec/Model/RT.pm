@@ -46,7 +46,6 @@ sub save_correspondencia {
 
 	my $rt = $self->auth( $datos{user}, $datos{pass} );
 	
-	$DB::single=1;
 	try {
 	    my $ticket = RT::Client::REST::Ticket->new(
 									rt 	 =>  $rt,
@@ -84,7 +83,6 @@ sub save_envio {
 
 	my $rt = $self->auth( $datos{user}, $datos{pass} );
 	
-	$DB::single=1;
 	try {
 	    my $ticket = RT::Client::REST::Ticket->new(
 							rt 	 =>  $rt,
@@ -189,20 +187,21 @@ sub query {
 
 		while (defined(my $obj = &$iterator) ) {
                push @$lista, {
-                            id     =>  $obj->id,
-                            asunto =>  encode("utf-8",$obj->subject),
-							remitente => encode("utf-8", $obj->cf('remitente')),
-							organismo => encode("utf-8", $obj->cf('organismo')),
-							destinatario => encode("utf-8", $obj->cf('destinatario')),
-							respuesta => encode("utf-8", $obj->cf('respuesta')),
-							fecha_respuesta => fecha_usuario($obj->cf('fecha_respuesta')),
-							tipo => encode("utf-8", $obj->cf('tipo')),
-							fecha_creacion => fecha_usuario( $obj->cf('fecha_recepcion') ),
-							cargado 	=> uc($obj->cf('cargado')),
-							observaciones => $obj->cf('observaciones'),
-							anexo => $obj->cf('anexo'),
-							cola  => $obj->queue,
-							}
+                        id     =>  $obj->id,
+                        asunto =>  encode("utf-8",$obj->subject),
+		        remitente => encode("utf-8", $obj->cf('remitente')),
+			organismo => encode("utf-8", $obj->cf('organismo')),
+			destinatario => encode("utf-8", $obj->cf('destinatario')),
+			respuesta => encode("utf-8", $obj->cf('respuesta')),
+			fecha_respuesta => fecha_usuario($obj->cf('fecha_respuesta')),
+			tipo => encode("utf-8", $obj->cf('tipo')),
+			fecha_creacion => fecha_usuario( $obj->cf('fecha_recepcion') ),
+			cargado 	=> uc($obj->cf('cargado')),
+			observaciones => $obj->cf('observaciones'),
+			anexo => $obj->cf('anexo'),
+			cola  => $obj->queue,
+			creado => $obj->created
+			}
 		}
 	
 		return \@$lista;

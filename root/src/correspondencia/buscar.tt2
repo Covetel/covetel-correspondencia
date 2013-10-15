@@ -15,8 +15,11 @@ $("document").ready(function(){
 
 	$("#divloading").hide();
 	$("#divresultado").hide();
+	$("#divresultado_saliente").hide();
 	$("#fecha_inicial").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_inicial_saliente").datepicker({ minDate: new Date(1, -1, 1, 2011) });
 	$("#fecha_final").datepicker({ minDate: new Date(1, -1, 1, 2011) });
+	$("#fecha_final_saliente").datepicker({ minDate: new Date(1, -1, 1, 2011) });
 	$("#resultado").hide();
 
 	$("#buscar").click(function(){
@@ -28,6 +31,7 @@ $("document").ready(function(){
 
 		$("#divloading").show();
 		$("#resultado").hide();
+		$("#resultado_saliente").hide();
 		$("#divresultado").hide();
 		$.post("[% Catalyst.uri_for('/correspondencia/buscar_correlativo') %]", { correlativo: $("#correlativo").val() },
               function(data){
@@ -64,6 +68,7 @@ $("document").ready(function(){
 			$("#divloading").fadeIn('slow');
 			$("#resultado").hide();
 			$("#divresultado").hide();
+			$("#divresultado_saliente").hide();
 			$("#tableresultado").find("tr:gt(0)").remove();
 			$.post("[% Catalyst.uri_for('/correspondencia/buscar_fechas') %]", { fecha_inicial: $("#fecha_inicial").val(), fecha_final: $("#fecha_final").val() },
               function(data){
@@ -97,6 +102,51 @@ $("document").ready(function(){
 		alert('joelgomezb: '+valor);
 	}
 
+
+
+	$("#buscar_saliente").click(function(){
+		if ( $("#fecha_inicial_saliente").val() == "" || $("#fecha_final_saliente").val() == "" ) {
+			alert("Debe ingresar dos fechas válidas");
+			return false;
+		}else{
+			$("#divloading").fadeIn('slow');
+			$("#resultado").hide();
+			$("#divresultado").hide();
+			$("#divresultado_saliente").hide();
+			$("#tableresultado_saliente").find("tr:gt(0)").remove();
+			$.post("[% Catalyst.uri_for('/correspondencia/buscar_fechas_saliente') %]", { fecha_inicial_saliente: $("#fecha_inicial_saliente").val(), fecha_final_saliente: $("#fecha_final_saliente").val() },
+              function(data){
+				 if ( data.json == "Session Expirada" ) {
+					window.location = "[% Catalyst.uri_for("/") %]";
+					return false;
+				 }
+
+				if ( data.json )	{
+					$("#divresultado_saliente").show();
+					$.each(data.json, function(i) {
+	
+					$("#tableresultado_saliente").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].creado + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
+
+						$("tr").css("background-color", function(i){
+					        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";
+					    });
+					});
+		
+				}else{
+					alert("Correspondencias no encontrada");
+				}
+
+				$("#divloading").hide();
+             });
+             return false;
+		}
+	});	
+
+
+
+
+
+
 	$("#buscar3").click(function(){
 		if ( $("#q").val() == '' ) {
 			alert("Debe algún texto a buscar");
@@ -107,6 +157,7 @@ $("document").ready(function(){
 		$("#divloading").fadeIn('slow');
 		$("#resultado").hide();
 		$("#divresultado").hide();
+		$("#divresultado_saliente").hide();
 		$("#tableresultado").find("tr:gt(0)").remove();
 		$.post("[% Catalyst.uri_for('/correspondencia/buscar_asunto') %]", { q : $("#q").val() },
 
@@ -154,6 +205,19 @@ $("document").ready(function(){
 				<td>Correlativo</td>
 				<td>Asunto</td>
 				<td>Fecha Creación</td>
+				<td>Cargado</td>
+				<td>Tipo</td>
+			</tr>
+		</thead>
+	</table>
+</div>
+<div id="divresultado_saliente">
+	<table id="tableresultado_saliente" align="center" width="60%" class="zebra" cellspacing="1">
+		<thead>
+			<tr>
+				<td>Correlativo</td>
+				<td>Asunto</td>
+				<td>Fecha de Envío</td>
 				<td>Cargado</td>
 				<td>Tipo</td>
 			</tr>

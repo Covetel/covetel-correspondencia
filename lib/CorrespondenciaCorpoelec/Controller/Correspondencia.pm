@@ -268,7 +268,7 @@ sub buscar_fechas : Local {
 	my %datos = (
 				 user => $c->session->{user},
 				 pass => $c->session->{pass},
-				 query => "(Queue = 'correspondencia_entrante' or Queue = 'correspondencia_saliente') and (CF.fecha_recepcion >= '$fecha_inicial' and CF.fecha_recepcion <= '$fecha_final')"
+				 query => "(Queue = 'correspondencia_entrante') and (CF.fecha_recepcion >= '$fecha_inicial' and CF.fecha_recepcion <= '$fecha_final')"
 			    );
 
 	my $ticket = $c->model("RT")->query( %datos );
@@ -276,6 +276,37 @@ sub buscar_fechas : Local {
 	$c->stash->{current_view} = "JSON";
 
 }
+
+sub buscar_fechas_saliente : Local {
+	my ( $self, $c ) = @_;
+
+	my $fecha_inicial = usuario_fecha( $c->request->param('fecha_inicial_saliente') );
+	my $fecha_final   = usuario_fecha( $c->request->param('fecha_final_saliente') );
+
+	use Data::Dumper;
+	$c->log->info(Dumper($fecha_inicial));
+	$c->log->info(Dumper($fecha_final));
+
+	use Date::Manip;
+
+	my $diferencia = DateCalc($fecha_inicial, $fecha_final, 2);
+	my $dias = Delta_Format($diferencia,"%dt");
+
+	$c->log->info(Dumper($dias));
+	my %datos = (
+				 user => $c->session->{user},
+				 pass => $c->session->{pass},
+				 query => "(Queue = 'correspondencia_saliente') and (Created > $dias )"
+			    );
+
+	$c->log->info(Dumper(%datos));
+	my $ticket = $c->model("RT")->query( %datos );
+	$c->log->info(Dumper($ticket));
+	$c->stash->{json} = $ticket;
+	$c->stash->{current_view} = "JSON";
+
+}
+
 sub retiqueta : Local : FormConfig {
 	my ( $self, $c ) = @_;
 

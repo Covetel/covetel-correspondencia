@@ -14,7 +14,7 @@ elements:
          name: multi2
          container_attrs:
            class: vertical
-         label: Número de correlativo de la correspondencia a direccionar
+         label: Número de correlativo de la correspondencia a búscar
          elements:
           - type: Text
             name: correlativo
@@ -31,7 +31,7 @@ elements:
    - type: Fieldset
      name: valores
      id: valores
-     legend: Búsqueda de la correspondencia en un rango de fecha
+     legend: Búsqueda de la correspondencia entrante en un rango de fecha
      attributes:
        class: principal
 
@@ -67,6 +67,46 @@ elements:
             name: buscar2
             value: Buscar
             id: buscar2
+   - type: Fieldset
+     name: valores
+     id: valores
+     legend: Búsqueda de la correspondencia saliente en un rango de fecha
+     attributes:
+       class: principal
+
+     elements: 
+       - type: Multi
+         name: multi2
+         container_attrs:
+           class: vertical
+         elements:
+          - type: Text
+            name: fecha_inicial_saliente
+            id: fecha_inicial_saliente
+            label: Fecha Inicial
+            size: 10
+            attributes:
+              class: fechajquery
+            constraints:
+              - type: Required
+                message: "Debe ingresar una fecha válida"
+
+          - type: Text
+            name: fecha_final_saliente
+            id: fecha_final_saliente
+            label: Fecha Final
+            size: 10 
+            attributes:
+              class: fechajquery
+            constraints:
+              - type: Required
+                message: "Debe ingresar una fecha válida"
+
+          - type: Button
+            name: buscar_saliente
+            value: Buscar
+            id: buscar_saliente
+
 
    - type: Fieldset
      name: busqueda_frase
