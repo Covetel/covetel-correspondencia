@@ -13,6 +13,11 @@ css_ext = [
 
 $("document").ready(function(){
 
+	function mostrar(valor){
+		alert('joelgomezb');
+	}
+
+
 	$("#divloading").hide();
 	$("#divresultado").hide();
 	$("#divresultado_saliente").hide();
@@ -72,20 +77,20 @@ $("document").ready(function(){
 			$("#tableresultado").find("tr:gt(0)").remove();
 			$.post("[% Catalyst.uri_for('/correspondencia/buscar_fechas') %]", { fecha_inicial: $("#fecha_inicial").val(), fecha_final: $("#fecha_final").val() },
               function(data){
-				 if ( data.json == "Session Expirada" ) {
-					window.location = "[% Catalyst.uri_for("/") %]";
-					return false;
-				 }
+			 if ( data.json == "Session Expirada" ) {
+				window.location = "[% Catalyst.uri_for("/") %]";
+				return false;
+			 }
 
-				if ( data.json )	{
-					$("#divresultado").show();
-					$.each(data.json, function(i) {
+			if ( data.json )	{
+				$("#divresultado").show();
+				$.each(data.json, function(i) {
 	
-					$("#tableresultado").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
+				$("#tableresultado").append("<tr><td><a id='correlativo' href='#' title='"+ data.json[i].id +"'  onClick='javascript:mostrar(data.json[i].id)'>" + data.json[i].id + "</a></td><td>" + data.json[i].asunto + "</td><td>" + data.json[i].fecha_creacion + "</td><td>" + data.json[i].cargado + "</td><td>" + data.json[i].cola + "</td></tr>");
 
-						$("tr").css("background-color", function(i){
-					        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";
-					    });
+				$("tr").css("background-color", function(i){
+				        return (i % 2 === 0) ? "#E2E2E2": "#FFFFFF";
+				    });
 					});
 		
 				}else{
@@ -98,9 +103,6 @@ $("document").ready(function(){
 		}
 	});	
 
-	function mostrar(valor){
-		alert('joelgomezb');
-	}
 
 
 

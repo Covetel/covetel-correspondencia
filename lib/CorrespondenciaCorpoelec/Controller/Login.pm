@@ -31,17 +31,17 @@ sub index :Path :Args(0): FormConfig {
 }
 
 sub index_FORM_VALID : Local {
-	my ( $self, $c ) = @_;
+    my ( $self, $c ) = @_;
 
-	 my $form = $c->stash->{form};
+     my $form = $c->stash->{form};
      my $user = $form->param_value('usuario');
      my $pass = $form->param_value('clave');
          
      my $rt = $c->model('RT')->auth($user, $pass); 
          
      if ( ref($rt) =~ /RT::Client::REST/ ){
-		  $c->session->{user} = $user;
-		  $c->session->{pass} = $pass;
+	  $c->session->{user} = $user;
+	  $c->session->{pass} = $pass;
           $c->flash->{usuario} = $user;
           $c->response->redirect( $c->uri_for('/correspondencia/recepcion') );
       }else{
