@@ -32,6 +32,15 @@ sub index :Path :Args(0) {
 #    $c->response->body('Matched CorrespondenciaCorpoelec::Controller::Correspondencia in Correspondencia.');
 }
 
+sub auto : Private {
+    my ( $self, $c ) = @_;
+
+    unless ( exists $c->session->{user} ) {
+	$c->delete_session();
+	$c->flash->{error_msg} = "Sessión Expirada";
+	$c->response->redirect( $c->uri_for("/login") );
+	}
+}
 sub recepcion : Local : FormConfig {
 	my ( $self, $c ) = @_;
 	

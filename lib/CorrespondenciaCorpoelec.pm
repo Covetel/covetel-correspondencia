@@ -56,7 +56,7 @@ __PACKAGE__->config(
 
 );
 
-__PACKAGE__->config('Plugin::Session' => { expires => 3600 });
+__PACKAGE__->config('Plugin::Session' => { expires => 36000 });
 
 
 # Start the application
