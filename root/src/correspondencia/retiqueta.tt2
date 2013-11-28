@@ -87,9 +87,9 @@ function findPrinter() {
             applet.append('A120,10,0,4,1,1,N,"Secretaria UNASUR"\n');
             applet.append('A120,40,0,2,1,1,N,"Correlativo #: '+ datos_ticket[0] +'"\n');
             applet.append('A120,70,0,2,1,1,N,"Caracas, '+ datos_ticket[1] +'"\n');
-            applet.append('A120,100,0,2,1,1,N,"Anexos: '+ datos_ticket[2] +'"\n');
+            //applet.append('A120,100,0,2,1,1,N,"Anexos: '+ datos_ticket[2] +'"\n');
             applet.append('A120,130,0,2,1,1,N,"Recibido por: '+ datos_ticket[3] +'"\n');
-            applet.append('A120,170,0,2,1,1,N,"Tipo: '+ datos_ticket[4] +'"\n');
+            //applet.append('A120,170,0,2,1,1,N,"Tipo: '+ datos_ticket[4] +'"\n');
             applet.append('P\n');
             // Send to the printer
             //if (findPrinter()) {
